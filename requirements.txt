@@ -1,0 +1,3 @@
+nicegui
+dnspython
+uvicorn[standard]

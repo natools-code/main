@@ -1,0 +1,33 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+env:
+  REGISTRY: registry-f2234338a3-natools.apps.ir-central1.arvancaas.ir
+  IMAGE_NAME: natools
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      -
+        name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ahmadian
+          password: naser9581
+      -
+        name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          registry: ${{ env.REGISTRY }}
+          push: true
+          tags: natools:latest
+ 
